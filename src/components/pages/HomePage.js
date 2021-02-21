@@ -28,11 +28,37 @@ const HomePage = () => {
         })
 
     }
+
     useEffect(() => {
-        console.log(JSON.stringify(cardItems))
+
         localStorage.setItem('cardItems', JSON.stringify(cardItems))
+        if (categories != null) {
+            console.log("not null")
+        }
+        const catFoods = categories.map(category => {
+            let arrayFood = []
+            category.foods.map(food => {
+                let counter = 0;
+                if (cardItems != null) {
+                    for (const item of cardItems) {
+                        if (item.id === food.id) counter++;
+                    }
+                }
+                let foodObject = { id: food.id, title: food.title, img: food.img, ingredient: food.ingredient, count: counter }
+                arrayFood.push(foodObject)
+            })
+            return { id: category.id, categoryTitle: category.title, foods: arrayFood }
+        })
+
+        setCategories(catFoods)
 
     }, [cardItems])
+
+    useEffect(() => {
+        console.log("cats updated")
+        console.log(categories)
+
+    }, [categories])
 
     useEffect(() => {
         console.log("home rendered")
@@ -49,9 +75,8 @@ const HomePage = () => {
                                         if (item.id === food.id) counter++;
                                     }
 
-                                    console.log("counter : "+ counter)
                                 }
-                                let foodObject = { id: food.id, title: food.title, img: food.img, ingredient: food.ingredient ,count:counter}
+                                let foodObject = { id: food.id, title: food.title, img: food.img, ingredient: food.ingredient, count: counter }
                                 arrayFood.push(foodObject)
                             })
                         })
@@ -70,27 +95,19 @@ const HomePage = () => {
     }, [])
 
 
-    {
+    return (<React.Fragment>
 
-        if (isLoading) {
-            return (<div> <LinearProgress color="secondary" /> </div>);
-        }
-        else {
-            return (
-                <Grid container direction="column"  >
-
-
+        {
+            isLoading ? <div> <LinearProgress color="secondary" /> </div> :
+                <Grid container direction="column" justify="center"   >
                     <ChipsArray chipsData={categories} />
                     <Foods data={categories} addFoodHandler={addFoodHandler} />
-
-
                 </Grid>
-
-            )
         }
 
 
-    }
+    </React.Fragment>)
+
 
 
 

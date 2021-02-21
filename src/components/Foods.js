@@ -20,18 +20,18 @@ const Foods = (props) => {
   const [catFood, setCatFoods] = useState([])
   useEffect(() => {
     setCatFoods(props.data)
-    console.log(catFood)
-  }, [catFood])
+    console.log("foods updated")
+    console.log(props.data)
+  },[])
   return (
     <div className={classes.root} >
-      <Grid direction="column" justify="center"  >
+      <Grid direction="column" justify="center"  container>
 
         {
           catFood.map(category => (
             <React.Fragment>
               <Typography variant="h5" >    {category.categoryTitle}</Typography>
               <Food data={category.foods}  addFoodHandler ={ props.addFoodHandler} />
-
             </React.Fragment>
           ))
         }

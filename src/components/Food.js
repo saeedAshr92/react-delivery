@@ -18,14 +18,15 @@ const Food = (props) => {
     const [data, setData] = useState([]);
     useEffect(() => {
         setData(props.data)
-
-    }, [])
+      
+    }, [data])
+  
     return (<div>
 
         {
             data.map(food => (
                 <React.Fragment>
-                    <Grid  item key={food.id} justify="center" >
+                    <Grid item key={food.id} justify="center" >
                         <Card className={classes.root}>
                             <CardActionArea>
                                 <CardMedia
@@ -48,12 +49,12 @@ const Food = (props) => {
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Button size="small" color="secondary" onClick ={()=> props.addFoodHandler(food.id)}>
+                                <Button size="small" color="secondary" onClick={() => props.addFoodHandler(food.id)}>
                                     افزودن
                                </Button>
-                               <Typography>
-                                   تعداد: {food.count}
-                               </Typography>
+                                <Typography>
+                                    تعداد: {food.count}
+                                </Typography>
                             </CardActions>
                         </Card>
                     </Grid>
