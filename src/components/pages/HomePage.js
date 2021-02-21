@@ -44,9 +44,9 @@ const HomePage = () => {
                 let foodObject = { id: food.id, title: food.title, img: food.img, ingredient: food.ingredient, count: counter }
                 arrayFood.push(foodObject)
             })
-            return { id: category.id, categoryTitle: category.title, foods: arrayFood }
+            return { id: category.id, categoryTitle: category.categoryTitle, foods: arrayFood }
         })
-
+        console.log(catFoods)
         setCategories(catFoods)
 
     }, [cardItems])
