@@ -18,8 +18,7 @@ const Food = (props) => {
     const [data, setData] = useState([]);
     useEffect(() => {
         setData(props.data)
-      
-    }, [data])
+    }, [[props.data]])
   
     return (<div>
 

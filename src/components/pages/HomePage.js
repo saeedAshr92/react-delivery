@@ -32,9 +32,6 @@ const HomePage = () => {
     useEffect(() => {
 
         localStorage.setItem('cardItems', JSON.stringify(cardItems))
-        if (categories != null) {
-            console.log("not null")
-        }
         const catFoods = categories.map(category => {
             let arrayFood = []
             category.foods.map(food => {
@@ -55,12 +52,6 @@ const HomePage = () => {
     }, [cardItems])
 
     useEffect(() => {
-        console.log("cats updated")
-        console.log(categories)
-
-    }, [categories])
-
-    useEffect(() => {
         console.log("home rendered")
         axios.get("https://api.delino.com/restaurant/menu/f601e9be-1974-4975-a876-bd7590c07e6d?_=1613896790839")
             .then(response => {
@@ -73,7 +64,7 @@ const HomePage = () => {
                                 if (cardItems != null) {
                                     for (const item of cardItems) {
                                         if (item.id === food.id) counter++;
-                                    }
+                                    } 
 
                                 }
                                 let foodObject = { id: food.id, title: food.title, img: food.img, ingredient: food.ingredient, count: counter }
