@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flexWrap',
     padding: 10,
     direction: 'rtl'
+    
   },
   
 }));
@@ -18,12 +19,12 @@ const Foods = (props) => {
     setCatFoods(props.data)
   }, [props.data])
   return (
-    <div className={classes.root} >
+    <div className={classes.root}  >
     
         {
           catFood.map(category => (
             <React.Fragment>
-              <Typography variant="h5" >    {category.categoryTitle}</Typography>
+              <Typography variant="h5" style={{marginTop:10}}>    {category.categoryTitle}</Typography>
               <Food data={category.foods} addFoodHandler={props.addFoodHandler}  decFoodHandler ={props.decFoodHandler} />
             </React.Fragment>
           ))

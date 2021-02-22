@@ -107,9 +107,9 @@ const HomePage = () => {
 
         {
             isLoading ? <div> <LinearProgress color="secondary" /> </div> :
-                <Grid container direction="column" justify="center"  >
+                <Grid container direction="column" justify="center" >
                     <ChipsArray  chipsData={categories}  />
-                    <Foods data={categories} addFoodHandler={addFoodHandler} decFoodHandler={decFoodHandler} />
+                    <Foods data={categories} addFoodHandler={addFoodHandler} decFoodHandler={decFoodHandler}   />
                 </Grid>
         }
 
