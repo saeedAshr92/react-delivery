@@ -11,6 +11,7 @@ import Grid from "@material-ui/core/Grid"
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Link } from "react-router-dom";
+import { WrapText } from "@material-ui/icons";
 
 const useStyles = makeStyles(
   theme => (
@@ -19,13 +20,16 @@ const useStyles = makeStyles(
         direction: "rtl"
       },
       menuButton: {
-        marginLeft: "auto"
+        marginLeft: "10"
       },
       listItem: {
         textAlign: "center"
       },
       drawerPaper: {
         marginTop: theme.mixins.toolbar.minHeight
+      },
+      typography:{
+        marginLeft:'auto'
       },
       drawerModal: {
         zIndex: theme.zIndex.appBar
@@ -61,14 +65,10 @@ export default function AppBar() {
 
   return (
     <React.Fragment>
-      <AppBarBase position="relative" className={classes.appBar}  >
+      <AppBarBase position="relative" className={classes.appBar}   >
         <Toolbar >
-          <Grid container direction="row" justify="space-between" alignItems="center"   >
-
-            <Typography variant="h6" color="inherit"  >
-              تهیه غذای واسوبی
-          </Typography>
-            <IconButton
+          <Grid container direction="row-reverse" alignItems="center"  justify="space-between"  >
+          <IconButton
               color="inherit"
               aria-label="Open drawer"
               className={classes.menuButton}
@@ -76,6 +76,10 @@ export default function AppBar() {
             >
               <MenuIcon />
             </IconButton>
+            <Typography  variant="h6" color="inherit" className={classes.typography} >
+              <b>تهیه غذای واسوبی </b>
+          </Typography>
+           
 
 
           </Grid>

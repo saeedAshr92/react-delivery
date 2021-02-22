@@ -19,9 +19,9 @@ const HomePage = () => {
             })
             if (food != undefined) {
                 if (cardItems != null)
-                    setCardItems(oldArray => [...oldArray, { id: food.id }])
+                    setCardItems(oldArray => [...oldArray, { id: food.id, title: food.title,ingredient: food.ingredient, img: food.img,price: food.price,count: 0}])
                 else {
-                    setCardItems([{ id: food.id }])
+                    setCardItems([{ id: food.id, title: food.title, ingredient: food.ingredient,img: food.img,price: food.price ,count: 0}])
                 }
             }
 
@@ -61,7 +61,7 @@ const HomePage = () => {
             })
             return { id: category.id, categoryTitle: category.categoryTitle, foods: arrayFood }
         })
-        console.log(catFoods)
+
         setCategories(catFoods)
 
     }, [cardItems])
@@ -84,7 +84,7 @@ const HomePage = () => {
 
                                 }
                                 let foodObject = { id: food.id, title: food.title, img: food.img, ingredient: food.ingredient, price: food.price, count: counter }
-                                console.log(foodObject.img.replace("#SIZEOFIMAGE#", "560x350"))
+                    
                                 arrayFood.push(foodObject)
                             })
                         })

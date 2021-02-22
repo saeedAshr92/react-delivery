@@ -6,7 +6,7 @@ const Vazir = {
   fontFamily: 'Vazir',
   fontStyle: 'normal',
   fontDisplay: 'swap',
-  fontWeight: 400,
+ 
   src: `
     local('Vazir-Medium'),
     url(${VazirTTF}) format('ttf')
