@@ -2,22 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
-import { Box, Button } from '@material-ui/core';
+import { Box, Button, Grid } from '@material-ui/core';
 
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'right',
         flexWrap: 'wrap',
         listStyle: 'none',
         padding: theme.spacing(0.5),
-        margin: 0,
+        marginTop: 1,
         direction:'rtl'
+        
     },
     chip: {
-        margin: theme.spacing(0.5),
+        margin: theme.spacing(0.2),
         color: 'secondary'
     },
     
@@ -33,12 +34,12 @@ const ChipsArray = (props) => {
     },[])
     return (
         
-        <Paper component="ul" className={classes.root} >
+        <Grid className={classes.root} >
         {
             chipsData.map(data=>{
                
                 return (
-                    <li key={data.id}>
+                    <li key={data.id}  item xs={2} >
                       <Chip clickable
                         onClick ={()=>{alert("clicked")}}
                         label={data.categoryTitle}
@@ -50,7 +51,7 @@ const ChipsArray = (props) => {
                   );
             })
         }
-      </Paper>
+      </Grid>
     )
 
 }

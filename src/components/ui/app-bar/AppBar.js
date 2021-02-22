@@ -10,6 +10,7 @@ import List from "@material-ui/core/List";
 import Grid from "@material-ui/core/Grid"
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(
   theme => (
@@ -33,14 +34,15 @@ const useStyles = makeStyles(
   )
 );
 
-const FullList = () => {
+const FullList = (props) => {
   const classes = useStyles();
+ 
   return (
     <List>
-      <ListItem className={classes.listItem}>
-        <ListItemText>خانه</ListItemText>
+      <ListItem component={Link} to ="/"  onClick={props.onItemClick} className={classes.listItem}>
+        <ListItemText >خانه</ListItemText>
       </ListItem>
-      <ListItem className={classes.listItem}>
+      <ListItem  component={Link} to ="/card" onClick={props.onItemClick} className={classes.listItem}>
         <ListItemText>سبد خرید</ListItemText>
       </ListItem>
 
@@ -50,7 +52,7 @@ const FullList = () => {
 
 export default function AppBar() {
   const classes = useStyles();
- 
+
   const [isOpen, setState] = React.useState(false);
 
   const toggleDrawer = open => event => {
@@ -64,7 +66,7 @@ export default function AppBar() {
           <Grid container direction="row" justify="space-between" alignItems="center"   >
 
             <Typography variant="h6" color="inherit"  >
-              تهیه غذای واسوبی 
+              تهیه غذای واسوبی
           </Typography>
             <IconButton
               color="inherit"
@@ -89,7 +91,7 @@ export default function AppBar() {
           modal: classes.drawerModal
         }}
       >
-        <FullList />
+        <FullList onItemClick ={toggleDrawer(!isOpen)} />
       </Drawer>
     </React.Fragment>
   );

@@ -1,4 +1,5 @@
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, IconButton, makeStyles, Typography } from '@material-ui/core';
+import { Add, AddShoppingCart, Remove } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react';
 
 
@@ -6,6 +7,7 @@ const useStyles = makeStyles({
     root: {
 
         marginTop: 10
+    
     },
     media: {
         height: 140,
@@ -19,11 +21,12 @@ const Food = (props) => {
     useEffect(() => {
         setData(props.data)
     }, [[props.data]])
-  
+
     return (<div>
 
         {
             data.map(food => (
+           
                 <React.Fragment>
                     <Grid item key={food.id} justify="center" >
                         <Card className={classes.root}>
@@ -33,8 +36,8 @@ const Food = (props) => {
 
                                     className={classes.root}
                                     alt="Contemplative Reptile"
-                                    height="60"
-                                    image="https://static.delino.com/Image/Restaurant/Food/x5msgog4.sus_560x350.jpg"
+                                    height="100"
+                                    image={food.img.replace("#SIZEOFIMAGE#", "280x175")}
                                     title="Contemplative Reptile"
                                 />
                                 <CardContent>
@@ -48,12 +51,31 @@ const Food = (props) => {
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Button size="small" color="secondary" onClick={() => props.addFoodHandler(food.id)}>
-                                    افزودن
-                               </Button>
-                                <Typography>
-                                    تعداد: {food.count}
-                                </Typography>
+
+                            <Grid container direction="row" alignItems="center"  justify="space-between" >
+                                {food.count > 0 ?
+                                    <Grid container direction="row" alignItems="center"  justify="flex-start" style={{maxWidth: '100px'}} >
+                                        <IconButton size="small" color="secondary" onClick={() => props.addFoodHandler(food.id)}>
+                                            <Add />
+                                        </IconButton>
+                                        <Typography>
+                                            {food.count}
+                                        </Typography>
+                                        <IconButton size="small" color="secondary" onClick={() => props.decFoodHandler(food.id)}>
+                                            <Remove />
+                                        </IconButton>
+                                    </Grid> : <Grid container style={{maxWidth: '100px'}}> <IconButton  size="small" color="secondary" onClick={() => props.addFoodHandler(food.id)}>
+                                        <AddShoppingCart />
+                                    </IconButton>
+                                    
+                                    </Grid>
+                                }
+                                
+                               <Typography   >
+                                  {food.price}  تومان 
+                               </Typography>
+
+                               </Grid>
                             </CardActions>
                         </Card>
                     </Grid>

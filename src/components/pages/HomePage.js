@@ -28,6 +28,21 @@ const HomePage = () => {
         })
 
     }
+    const decFoodHandler = (id) => {
+        /*    {
+                categories.find(category=>{
+                    const food=category.foods.find(food=>{
+                        return food.id === id;
+                    })
+                    if(food != undefined){
+                        if(cardItems != null)
+                        setCardItems
+                    }
+       
+                })
+            }
+            */
+    }
 
     useEffect(() => {
 
@@ -41,7 +56,7 @@ const HomePage = () => {
                         if (item.id === food.id) counter++;
                     }
                 }
-                let foodObject = { id: food.id, title: food.title, img: food.img, ingredient: food.ingredient, count: counter }
+                let foodObject = { id: food.id, title: food.title, img: food.img, ingredient: food.ingredient,price: food.price, count: counter }
                 arrayFood.push(foodObject)
             })
             return { id: category.id, categoryTitle: category.categoryTitle, foods: arrayFood }
@@ -53,21 +68,23 @@ const HomePage = () => {
 
     useEffect(() => {
         console.log("home rendered")
-        axios.get("https://api.delino.com/restaurant/menu/f601e9be-1974-4975-a876-bd7590c07e6d?_=1613896790839")
+        axios.get("https://api.delino.com/restaurant/menu/252983dd-4fce-4433-b9b0-793651952666?_=1613992057860")
             .then(response => {
                 const categories = response.data.categories.map(category => {
                     {
                         let arrayFood = []
                         category.sub.map((sub) => {
+                            
                             sub.food.map((food) => {
                                 let counter = 0;
                                 if (cardItems != null) {
                                     for (const item of cardItems) {
                                         if (item.id === food.id) counter++;
-                                    } 
+                                    }
 
                                 }
-                                let foodObject = { id: food.id, title: food.title, img: food.img, ingredient: food.ingredient, count: counter }
+                                let foodObject = { id: food.id, title: food.title, img: food.img, ingredient: food.ingredient, price: food.price, count: counter }
+                                console.log(foodObject.img.replace("#SIZEOFIMAGE#", "560x350"))
                                 arrayFood.push(foodObject)
                             })
                         })
@@ -90,9 +107,9 @@ const HomePage = () => {
 
         {
             isLoading ? <div> <LinearProgress color="secondary" /> </div> :
-                <Grid container direction="column" justify="center"   >
-                    <ChipsArray chipsData={categories} />
-                    <Foods data={categories} addFoodHandler={addFoodHandler} />
+                <Grid container direction="column" justify="center"  >
+                    <ChipsArray  chipsData={categories}  />
+                    <Foods data={categories} addFoodHandler={addFoodHandler} decFoodHandler={decFoodHandler} />
                 </Grid>
         }
 

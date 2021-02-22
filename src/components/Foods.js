@@ -8,11 +8,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 10,
     direction: 'rtl'
   },
-  paper: {
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
+  
 }));
 
 const Foods = (props) => {
@@ -23,19 +19,16 @@ const Foods = (props) => {
   }, [props.data])
   return (
     <div className={classes.root} >
-      <Grid direction="column" justify="center" container>
-
+    
         {
           catFood.map(category => (
             <React.Fragment>
               <Typography variant="h5" >    {category.categoryTitle}</Typography>
-              <Food data={category.foods} addFoodHandler={props.addFoodHandler} />
+              <Food data={category.foods} addFoodHandler={props.addFoodHandler}  decFoodHandler ={props.decFoodHandler} />
             </React.Fragment>
           ))
         }
 
-
-      </Grid>
     </div>
   );
 
