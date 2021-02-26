@@ -4,8 +4,9 @@ import Chip from '@material-ui/core/Chip';
 import ChipsArray from '../ui/chips/ChipsArray';
 import { Card, CircularProgress, Grid, LinearProgress } from '@material-ui/core';
 import Foods from '../Foods';
-
-const HomePage = () => {
+import {connect} from 'react-redux';
+import { setFoods} from '../../redux/Foods/foods.actions';
+const HomePage = (props) => {
 
 
     const [categories, setCategories] = useState([])
@@ -91,6 +92,7 @@ const HomePage = () => {
                         return { id: category.id, categoryTitle: category.title, foods: arrayFood }
                     }
                 })
+                props.setFoods(categories)
                 setCategories(categories)
                 setIsLoading(false)
 
@@ -122,4 +124,15 @@ const HomePage = () => {
 
 
 }
-export default HomePage;
+const mapStateToProps = (state) => {
+    return{
+        foods : state.foodsRed.foods
+    };
+};
+const mapDispatchToProps = (dispatch)=>{
+    return{
+        setFoods : ()=> dispatch(setFoods())
+    };
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(HomePage);

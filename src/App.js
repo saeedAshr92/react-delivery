@@ -14,7 +14,6 @@ function App() {
             <BrowserRouter>
       <AppBar  />
 
-
         <Switch>
           <Route path="/" exact component={HomePage} />
           <Route path="/card" exact component={CardPage} />
