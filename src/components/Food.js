@@ -1,18 +1,19 @@
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, IconButton, makeStyles, Typography } from '@material-ui/core';
 import { Add, AddShoppingCart, Remove } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react';
+import { blue } from '@material-ui/core/colors';
 
-
-const useStyles = makeStyles({
-    root: {
-
-        marginTop: 10
-    
+const useStyles = makeStyles((theme) => ({
+    root:{
+        marginTop: 20,
+        flexGrow: 3,
+        
     },
     media: {
+        marginTop: 10,
         height: 140,
     },
-});
+}))
 
 
 const Food = (props) => {
@@ -22,26 +23,25 @@ const Food = (props) => {
         setData(props.data)
     }, [props.data])
 
-    return (<div>
+    return (<React.Fragment >
 
         {
           
           data ? data.map(food => (
            
-            <React.Fragment>
-                <Grid item key={food.id} justify="center" >
-                    <Card className={classes.root}>
+                <Grid item key={food.id} justify="center"    className={classes.root}>
+                    <Card  >
                         <CardActionArea>
                             <CardMedia
                                 component="img"
 
-                                className={classes.root}
+                                className={classes.media}
                                 alt="Contemplative Reptile"
                                 height="100"
                                 image={food.img.replace("#SIZEOFIMAGE#", "280x175")}
                                 title="Contemplative Reptile"
                             />
-                            <CardContent>
+                            <CardContent height="50">
                                 <Typography gutterBottom variant="h6" component="h2">
                                     {food.title}
                                 </Typography>
@@ -80,11 +80,11 @@ const Food = (props) => {
                         </CardActions>
                     </Card>
                 </Grid>
-            </React.Fragment>
+    
         )) : <div>موردی وجود ندارد </div>
         }
 
-    </div>)
+    </React.Fragment >)
 }
 
 export default Food;

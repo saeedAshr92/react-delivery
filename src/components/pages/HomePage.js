@@ -109,7 +109,7 @@ const HomePage = (props) => {
 
         {
             isLoading ? <div> <LinearProgress color="secondary" /> </div> :
-                <Grid container direction="column" justify="center" >
+                <Grid container spacing={1} direction="column" justify="center" >
                     <ChipsArray  chipsData={categories}  />
                     <Foods data={categories} addFoodHandler={addFoodHandler} decFoodHandler={decFoodHandler}   />
                 </Grid>

@@ -4,11 +4,16 @@ import Food from './Food';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flexWrap',
+    flexGrow: 3,
     padding: 10,
     direction: 'rtl'
-    
   },
+  grid:{
+    padding: 10,
+  },
+  header:{
+    marginTop:20,
+  }
   
 }));
 
@@ -23,10 +28,12 @@ const Foods = (props) => {
     
         {
           catFood.map(category => (
-            <React.Fragment>
-              <Typography variant="h5" style={{marginTop:10}}>    {category.categoryTitle}</Typography>
-              <Food data={category.foods} addFoodHandler={props.addFoodHandler}  decFoodHandler ={props.decFoodHandler} />
-            </React.Fragment>
+            <Grid container item className={classes.grid} direction="column">
+              <Typography variant="h5" style={{marginTop:10}} className={classes.header}>    {category.categoryTitle}</Typography>
+              <Grid container justify="flex-start" alignItems="center" xs={12} spacing={1} direction="row">
+              <Food data={category.foods} addFoodHandler={props.addFoodHandler}  decFoodHandler ={props.decFoodHandler}/>
+              </Grid>
+            </Grid>
           ))
         }
 
